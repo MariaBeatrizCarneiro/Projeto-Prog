@@ -1,1 +1,5 @@
 .DS_Store
+runscript
+test
+runscript.dSYM/
+test.dSYM/
