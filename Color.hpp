@@ -13,6 +13,8 @@ namespace prog
       Color();
       Color(const Color& c);
       Color(rgb_value r, rgb_value g, rgb_value b);
+      bool operator==(const Color& other) const;
+      bool operator!=(const Color& other) const;
       rgb_value red() const;
       rgb_value& red();
       rgb_value green() const;

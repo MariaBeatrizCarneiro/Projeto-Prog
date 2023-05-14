@@ -22,6 +22,16 @@ namespace prog {
         blue_ = blue;
     }
 
+    // Equality operator -> test if equal
+    bool Color::operator==(const Color& other) const {
+        return (red_ == other.red_) && (green_ == other.green_) && (blue_ == other.blue_);
+    }
+
+    // Equality operator -> test if different
+    bool Color::operator!=(const Color& other) const {
+        return !operator==(other);
+    }
+
     // Const member function
     rgb_value Color::red() const {
         return red_;
@@ -63,7 +73,7 @@ namespace prog {
     void Color::to_gray_scale() {
         // Integer (unsigned char) division without rounding
         rgb_value v = (red_ + green_ + blue_) / 3;
-        
+
         red_ = green_ = blue_ = v;
     }
 }

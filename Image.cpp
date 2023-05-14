@@ -70,4 +70,14 @@ namespace prog
       }
     }
   }
+
+  // Replaces all (r1,  g1, b1) pixels by (r2,  g2, b2) -> change a color in the whole image
+  void Image::replace(Color color1, Color color2) {
+   for (int i = 0; i < width_; i++) {
+      for (int j = 0; j < height_; j++) {
+        if (colors_[i][j] == color1)
+          colors_[i][j] = color2;
+      }
+    }
+  }
 }

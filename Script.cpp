@@ -59,6 +59,11 @@ namespace prog {
                 continue;
             }
 
+            if (command == "replace") {
+                replace();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -91,5 +96,11 @@ namespace prog {
     void Script::to_gray_scale() {
         // Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3.
         image->to_gray_scale();
+    }
+    void Script::replace() {
+        // Replaces all (r1,  g1, b1) pixels by (r2,  g2, b2).
+        Color color1, color2;
+        input >> color1 >> color2;
+        image->replace(color1, color2);
     }
 }
