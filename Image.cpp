@@ -80,4 +80,15 @@ namespace prog
       }
     }
   }
+
+  // Assign (r, g, b) to all pixels contained in rectangle defined by top-left corner (x, y), width w, and height h
+  void Image::fill(int x, int y, int w, int h, Color color) {
+   for (int i = 0; i < width_; i++) {
+      for (int j = 0; j < height_; j++) {
+        if ((x <= i) && (i < x + w) && (y <= j) && (j < y + h)) {
+          colors_[i][j] = color;
+        }
+      }
+    }
+  }
 }

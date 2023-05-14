@@ -64,6 +64,11 @@ namespace prog {
                 continue;
             }
 
+            if (command == "fill") {
+                fill();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -102,5 +107,12 @@ namespace prog {
         Color color1, color2;
         input >> color1 >> color2;
         image->replace(color1, color2);
+    }
+    void Script::fill() {
+        // Assign (r, g, b) to all pixels contained in rectangle defined by top-left corner (x, y), width w, and height h.
+        Color color;
+        int x, y, w, h;
+        input >> x >> y >> w >> h >> color;
+        image->fill(x, y, w, h, color);
     }
 }
