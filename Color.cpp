@@ -16,6 +16,7 @@ namespace prog {
 
     // Constructor with individual attributes
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) {
+        // Set private variables
         red_ = red;
         green_ = green;
         blue_ = blue;
@@ -36,13 +37,25 @@ namespace prog {
         return blue_;
     }
 
+    // Member function
     rgb_value& Color::red()  {
         return red_;
     }
+
+    // Member function
     rgb_value& Color::green()  {
       return green_;
     }
+
+    // Member function
     rgb_value& Color::blue()  {
       return blue_;
+    }
+
+    // Invert a color
+    void Color::invert() {
+        red_ = 255 - red_;
+        green_ = 255 - green_;
+        blue_ = 255 - blue_;
     }
 }

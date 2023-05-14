@@ -18,8 +18,8 @@ namespace prog {
     }
 
     Script::Script(const string& filename) :
-            image(nullptr), input(filename) {
-
+        image(nullptr), input(filename) {
+        
     }
     void Script::clear_image_if_any() {
         if (image != nullptr) {
@@ -47,7 +47,13 @@ namespace prog {
             if (command == "save") {
                 save();
                 continue;
-            } 
+            }
+
+            if (command == "invert") {
+                invert();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -72,5 +78,9 @@ namespace prog {
         string filename;
         input >> filename;
         saveToPNG(filename, image);
+    }
+    void Script::invert() {
+        // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b).
+        image->invert();
     }
 }
