@@ -4,3 +4,4 @@ test
 runscript.dSYM/
 test.dSYM/
 test_log.txt
+.vscode/
