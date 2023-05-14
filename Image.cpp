@@ -53,12 +53,20 @@ namespace prog
     return colors_[x][y];
   }
 
+  // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b) -> invert image
   void Image::invert() {
-    cout << "inverting image" << endl;
-
     for (int i = 0; i < width_; i++) {
       for (int j = 0; j < height_; j++) {
         colors_[i][j].invert();
+      }
+    }
+  }
+
+  // Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3 -> convert an image to gray scale
+  void Image::to_gray_scale() {
+    for (int i = 0; i < width_; i++) {
+      for (int j = 0; j < height_; j++) {
+        colors_[i][j].to_gray_scale();
       }
     }
   }

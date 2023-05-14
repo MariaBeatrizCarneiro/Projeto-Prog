@@ -18,6 +18,7 @@ namespace prog
     Color &at(int x, int y);
     const Color &at(int x, int y) const;
     void invert();
+    void to_gray_scale();
   };
 }
 #endif

@@ -54,6 +54,11 @@ namespace prog {
                 continue;
             }
 
+            if (command == "to_gray_scale") {
+                to_gray_scale();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -82,5 +87,9 @@ namespace prog {
     void Script::invert() {
         // Transforms each individual pixel (r, g, b) to (255-r,255-g,255-b).
         image->invert();
+    }
+    void Script::to_gray_scale() {
+        // Transforms each individual pixel (r, g, b) to (v, v, v) where v = (r + g + b)/3.
+        image->to_gray_scale();
     }
 }

@@ -58,4 +58,12 @@ namespace prog {
         green_ = 255 - green_;
         blue_ = 255 - blue_;
     }
+
+    // Convert a color to gray scale
+    void Color::to_gray_scale() {
+        // Integer (unsigned char) division without rounding
+        rgb_value v = (red_ + green_ + blue_) / 3;
+        
+        red_ = green_ = blue_ = v;
+    }
 }
