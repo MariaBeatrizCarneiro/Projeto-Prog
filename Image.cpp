@@ -126,4 +126,13 @@ namespace prog
       }
     }
   }
+
+  // 
+  void Image::copy(const Image& from_image, int x, int y, int w, int h) {
+   for (int i = 0; i < w; i++) {
+      for (int j = 0; j < h; j++) {
+          colors_[i][j] = from_image.colors_[i+x][j+y];
+      }
+    }
+  }
 }

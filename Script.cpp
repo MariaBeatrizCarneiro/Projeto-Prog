@@ -84,6 +84,11 @@ namespace prog {
                 continue;
             }
 
+            if (command == "crop") {
+                crop();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -157,5 +162,21 @@ namespace prog {
 
         // Free memory
         delete image_to_add;
+    }
+
+    void Script::crop() {
+        // Crop the image, reducing it to all pixels contained in the rectangle defined by top-left corner (x, y), width w, and height h.
+        int x, y, w, h;
+
+        input >> x >> y >> w >> h;
+
+        Image *new_image = new Image(w, h);
+        new_image->copy(*image, x, y, w, h);
+
+        // Swap pointers
+        Image *image_to_delete = image;
+        image = new_image;
+
+        delete image_to_delete;
     }
 }
