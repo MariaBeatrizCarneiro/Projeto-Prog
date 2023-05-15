@@ -69,6 +69,11 @@ namespace prog {
                 continue;
             }
 
+            if (command == "h_mirror") {
+                h_mirror();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -114,5 +119,10 @@ namespace prog {
         int x, y, w, h;
         input >> x >> y >> w >> h >> color;
         image->fill(x, y, w, h, color);
+    }
+
+    void Script::h_mirror() {
+        // Mirror image horizontally.
+        image->h_mirror();
     }
 }

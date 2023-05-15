@@ -91,4 +91,16 @@ namespace prog
       }
     }
   }
+
+  // Pixels (x, y) and (width() - 1 - x, y) for all 0 <= x < width() / 2 and 0 <= y < height().
+  void Image::h_mirror() {
+   Color t;
+   for (int i = 0; i < width_ / 2; i++) {
+      for (int j = 0; j < height_; j++) {
+        t = colors_[i][j];
+        colors_[i][j] = colors_[width_ -1 -i][j];
+        colors_[width_ -1 -i][j] = t;
+      }
+    }
+  }
 }
