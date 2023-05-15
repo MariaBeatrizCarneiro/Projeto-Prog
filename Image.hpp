@@ -22,6 +22,8 @@ namespace prog
     void replace(Color color1, Color color2);
     void fill(int x, int y, int w, int h, Color color);
     void h_mirror();
+    void v_mirror();
+    void add(const Image& image_to_add, Color neutral_color, int x, int y);
   };
 }
 #endif

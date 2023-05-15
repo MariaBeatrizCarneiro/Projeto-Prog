@@ -29,6 +29,8 @@ namespace prog
     void replace();
     void fill();
     void h_mirror();
+    void v_mirror();
+    void add();
   };
 }
 #endif

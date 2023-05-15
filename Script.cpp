@@ -74,6 +74,16 @@ namespace prog {
                 continue;
             }
 
+            if (command == "v_mirror") {
+                v_mirror();
+                continue;
+            }
+
+            if (command == "add") {
+                add();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -124,5 +134,28 @@ namespace prog {
     void Script::h_mirror() {
         // Mirror image horizontally.
         image->h_mirror();
+    }
+
+    void Script::v_mirror() {
+        // Mirror image vertically
+        image->v_mirror();
+    }
+
+    void Script::add() {
+        // Copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b), to the rectangle of the current image with top-left corner (x, y) of the current image.
+        Color neutral_color;
+        Image *image_to_add;
+        int x, y;
+        string filename;
+
+        // Read inputs
+        input >> filename >> neutral_color >> x >> y;
+
+        // Load image_to_add and process
+        image_to_add = loadFromPNG(filename);
+        image->add(*image_to_add, neutral_color, x, y);
+
+        // Free memory
+        delete image_to_add;
     }
 }

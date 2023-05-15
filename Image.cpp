@@ -94,12 +94,35 @@ namespace prog
 
   // Pixels (x, y) and (width() - 1 - x, y) for all 0 <= x < width() / 2 and 0 <= y < height().
   void Image::h_mirror() {
-   Color t;
+   Color tmp;
    for (int i = 0; i < width_ / 2; i++) {
       for (int j = 0; j < height_; j++) {
-        t = colors_[i][j];
+        tmp = colors_[i][j];
         colors_[i][j] = colors_[width_ -1 -i][j];
-        colors_[width_ -1 -i][j] = t;
+        colors_[width_ -1 -i][j] = tmp;
+      }
+    }
+  }
+
+  // Pixels (x, y) and (x, height() - 1 - y) for all 0 <= x < width() and 0 <= y < height() / 2.
+  void Image::v_mirror() {
+   Color tmp;
+   for (int i = 0; i < width_; i++) {
+      for (int j = 0; j < height_ / 2; j++) {
+        tmp = colors_[i][j];
+        colors_[i][j] = colors_[i][height_ -1 -j];
+        colors_[i][height_ -1 -j] = tmp;
+      }
+    }
+  }
+
+  // Copy all pixels from image stored in PNG file filename, except pixels in that image with “neutral” color (r, g, b), to the rectangle of the current image with top-left corner (x, y) of the current image.
+  void Image::add(const Image& image_to_add, Color neutral_color, int x, int y) {
+   for (int i = 0; i < image_to_add.width_; i++) {
+      for (int j = 0; j < image_to_add.height_; j++) {
+        if(image_to_add.colors_[i][j] != neutral_color) {
+          colors_[x+i][y+j] = image_to_add.colors_[i][j];
+        }
       }
     }
   }
