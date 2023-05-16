@@ -25,6 +25,8 @@ namespace prog
     void v_mirror();
     void add(const Image& image_to_add, Color neutral_color, int x, int y);
     void copy(const Image& from_image, int x, int y, int w, int h);
+    void rotate_left(const Image& from_image);
+    void rotate_right(const Image& from_image);
   };
 }
 #endif

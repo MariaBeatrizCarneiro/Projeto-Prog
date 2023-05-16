@@ -1,6 +1,4 @@
 #include "Image.hpp"
-#include <iostream>
-using namespace std;
 
 namespace prog
 {
@@ -127,11 +125,29 @@ namespace prog
     }
   }
 
-  // 
+  // Copy from_image starting at (x,y) for given width and height. 
   void Image::copy(const Image& from_image, int x, int y, int w, int h) {
    for (int i = 0; i < w; i++) {
       for (int j = 0; j < h; j++) {
           colors_[i][j] = from_image.colors_[i+x][j+y];
+      }
+    }
+  }
+
+  // Copy from_image rotating coordinates left by 90 degrees.
+  void Image::rotate_left(const Image& from_image) {
+    for (int i = 0; i < height_; i++) {
+      for (int j = 0; j < width_; j++) {
+          colors_[j][height_ - i - 1] = from_image.colors_[i][j];
+      }
+    }
+  }
+
+  // Copy from_image rotating coordinates right by 90 degrees.
+  void Image::rotate_right(const Image& from_image) {
+    for (int i = 0; i < height_; i++) {
+      for (int j = 0; j < width_; j++) {
+          colors_[width_ - j - 1][i] = from_image.colors_[i][j];
       }
     }
   }

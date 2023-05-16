@@ -89,6 +89,16 @@ namespace prog {
                 continue;
             }
 
+            if (command == "rotate_left") {
+                rotate_left();
+                continue;
+            }
+
+            if (command == "rotate_right") {
+                rotate_right();
+                continue;
+            }
+
             // TODO ...
 
         }
@@ -173,7 +183,37 @@ namespace prog {
         Image *new_image = new Image(w, h);
         new_image->copy(*image, x, y, w, h);
 
-        // Swap pointers
+        // Swap image pointers
+        Image *image_to_delete = image;
+        image = new_image;
+
+        delete image_to_delete;
+    }
+
+    void Script::rotate_left() {
+        // Rotate image left by 90 degrees.
+        int new_image_width = image->height();
+        int new_image_height = image->width();
+
+        Image *new_image = new Image(new_image_width, new_image_height);
+        new_image->rotate_left(*image);
+
+        // Swap image pointers
+        Image *image_to_delete = image;
+        image = new_image;
+
+        delete image_to_delete;
+    }
+
+    void Script::rotate_right() {
+        // Rotate image right by 90 degrees.
+        int new_image_width = image->height();
+        int new_image_height = image->width();
+
+        Image *new_image = new Image(new_image_width, new_image_height);
+        new_image->rotate_right(*image);
+
+        // Swap image pointers
         Image *image_to_delete = image;
         image = new_image;
 
