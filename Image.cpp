@@ -157,15 +157,58 @@ namespace prog
 
   // Apply a median filter with window size ws >= 3 to the current image.
   void Image::median_filter(const Image& from_image, int ws) {
-    for (int x = 0; x < height_; x++) {
-      for (int y = 0; y < width_; y++) {
+    int max_size = ws * ws;
+    int vector_size = 0;
+    Color color;
+    rgb_value red;
+    rgb_value green;
+    rgb_value blue;
 
-        //vector<int> rValues, gValues, bValues;
+    vector<int> redValues(max_size);
+    vector<int> greenValues(max_size);
+    vector<int> blueValues(max_size);
+
+    for (int x = 0; x < width_; x++) {
+      for (int y = 0; y < height_; y++) {
+
+        // Apply median filter to Color (x,y)
+
+        redValues.clear();
+        greenValues.clear();
+        blueValues.clear();
+        vector_size = 0;
 
         for (int nx = max(0, x - ws / 2); nx <= min(width() - 1, x + ws / 2); nx++) {
-          for (int ny = max(0, y - ws / 2); ny <= min(height() - 1, y + ws /2); ny++) {
+          for (int ny = max(0, y - ws / 2); ny <= min(height() - 1, y + ws / 2); ny++) {
+
+            redValues.push_back(from_image.colors_[nx][ny].red());
+            greenValues.push_back(from_image.colors_[nx][ny].green());
+            blueValues.push_back(from_image.colors_[nx][ny].blue());
+
+            vector_size++;
           }
         }
+
+        sort(redValues.begin(), redValues.end());
+        sort(greenValues.begin(), greenValues.end());
+        sort(blueValues.begin(), blueValues.end());
+        
+        assert(vector_size = redValues.size());
+
+        if (vector_size % 2 == 0) {
+          red = (redValues[vector_size / 2 - 1] + redValues[vector_size / 2]) / 2;
+          green = (greenValues[vector_size / 2 - 1] + greenValues[vector_size / 2]) / 2;
+          blue = (blueValues[vector_size / 2 - 1] + blueValues[vector_size / 2]) / 2;
+        }
+        else {
+          red = redValues[vector_size / 2];
+          green = greenValues[vector_size / 2];
+          blue = blueValues[vector_size / 2];
+        }
+
+        color = {red, green, blue};
+
+        colors_[x][y] = color;
       }
     }
   }
