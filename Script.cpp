@@ -99,8 +99,22 @@ namespace prog {
                 continue;
             }
 
-            // TODO ...
+            if (command == "median_filter") {
+                median_filter();
+                continue;
+            }
 
+            /*
+            if (command == "xpm2_open") {
+                xpm2_open();
+                continue;
+            }
+
+            if (command == "xpm2_save") {
+                xpm2_save();
+                continue;
+            }
+            */
         }
     }
     void Script::open() {
@@ -212,6 +226,21 @@ namespace prog {
 
         Image *new_image = new Image(new_image_width, new_image_height);
         new_image->rotate_right(*image);
+
+        // Swap image pointers
+        Image *image_to_delete = image;
+        image = new_image;
+
+        delete image_to_delete;
+    }
+
+    void Script::median_filter() {
+        // Apply a median filter with window size ws >= 3 to the current image.
+        int ws;
+        input >> ws;
+
+        Image *new_image = new Image(image->width(),image->height());
+        new_image->median_filter(*image, ws);
 
         // Swap image pointers
         Image *image_to_delete = image;

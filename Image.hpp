@@ -27,6 +27,7 @@ namespace prog
     void copy(const Image& from_image, int x, int y, int w, int h);
     void rotate_left(const Image& from_image);
     void rotate_right(const Image& from_image);
+    void median_filter(const Image& from_image, int ws);
   };
 }
 #endif

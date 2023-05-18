@@ -1,4 +1,7 @@
 #include "Image.hpp"
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 namespace prog
 {
@@ -148,6 +151,21 @@ namespace prog
     for (int i = 0; i < height_; i++) {
       for (int j = 0; j < width_; j++) {
           colors_[width_ - j - 1][i] = from_image.colors_[i][j];
+      }
+    }
+  }
+
+  // Apply a median filter with window size ws >= 3 to the current image.
+  void Image::median_filter(const Image& from_image, int ws) {
+    for (int x = 0; x < height_; x++) {
+      for (int y = 0; y < width_; y++) {
+
+        //vector<int> rValues, gValues, bValues;
+
+        for (int nx = max(0, x - ws / 2); nx <= min(width() - 1, x + ws / 2); nx++) {
+          for (int ny = max(0, y - ws / 2); ny <= min(height() - 1, y + ws /2); ny++) {
+          }
+        }
       }
     }
   }
