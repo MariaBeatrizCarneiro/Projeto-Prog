@@ -1,6 +1,7 @@
 #include "XPM2.hpp"
 #include <fstream>
 #include <map>
+#include <iomanip>
 using namespace std;
 
 namespace prog {
@@ -43,9 +44,6 @@ namespace prog {
 
         for(int i = 0; i < n; i++) {
             infile >> color_key >> entry_type >> hexcode;
-            cout << "color_key: " << color_key << endl;
-            cout << "entry_type: " << entry_type << endl;
-            cout << "hexcode: " << hexcode << endl;
 
             if (entry_type != color_entry_type)
                 return nullptr;
@@ -54,19 +52,9 @@ namespace prog {
             green = (rgb_value)stoi(hexcode.substr(3, 2), 0, 16);
             blue = (rgb_value)stoi(hexcode.substr(5, 2), 0, 16);
 
-            cout << "red: " << (int)red << endl;
-            cout << "green: " << (int)green << endl;
-            cout << "blue: " << (int)blue << endl;
-
             color = {red, green, blue};
 
             color_map[color_key] = color;
-        }
-
-        map<char, Color>::iterator it = color_map.begin();
-        while(it != color_map.end()) {
-            cout << "Color: " << it->first << " (" << (int)(it->second).red() << "," << (int)(it->second).green() << "," << (int)(it->second).blue() << ")" << endl;
-            ++it;
         }
 
         Image *image = new Image(w, h);
@@ -81,13 +69,6 @@ namespace prog {
 
         return image;
     }
-
-
-
-
-
-
-
 
 
     void saveToXPM2(const string& file, const Image* image) {
