@@ -32,6 +32,12 @@ namespace prog {
         return !operator==(other);
     }
 
+    bool Color::operator <(const Color& other) const {
+        int sum = red_ + green_*255 + blue_*255*255;
+        int sum_other = other.red_ + other.green_*255 + other.blue_*255*255;
+        return sum < sum_other;
+    }
+
     // Const member function
     rgb_value Color::red() const {
         return red_;

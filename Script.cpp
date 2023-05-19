@@ -104,7 +104,6 @@ namespace prog {
                 continue;
             }
 
-            /*
             if (command == "xpm2_open") {
                 xpm2_open();
                 continue;
@@ -114,7 +113,6 @@ namespace prog {
                 xpm2_save();
                 continue;
             }
-            */
         }
     }
     void Script::open() {
@@ -247,5 +245,20 @@ namespace prog {
         image = new_image;
 
         delete image_to_delete;
+    }
+
+    void Script::xpm2_open() {
+        // Replace current image (if any) with image read from XPM2 file.
+        clear_image_if_any();
+        string filename;
+        input >> filename;
+        image = loadFromXPM2(filename);
+    }
+
+    void Script::xpm2_save() {
+        // Save current image to XPM2 file.
+        string filename;
+        input >> filename;
+        saveToXPM2(filename, image);
     }
 }

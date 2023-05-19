@@ -159,10 +159,7 @@ namespace prog
   void Image::median_filter(const Image& from_image, int ws) {
     int max_size = ws * ws;
     int vector_size = 0;
-    Color color;
-    rgb_value red;
-    rgb_value green;
-    rgb_value blue;
+    rgb_value red, green, blue;
 
     vector<int> redValues(max_size);
     vector<int> greenValues(max_size);
@@ -193,7 +190,7 @@ namespace prog
         sort(greenValues.begin(), greenValues.end());
         sort(blueValues.begin(), blueValues.end());
         
-        assert(vector_size = redValues.size());
+        assert(vector_size == redValues.size());
 
         if (vector_size % 2 == 0) {
           red = (redValues[vector_size / 2 - 1] + redValues[vector_size / 2]) / 2;
@@ -206,9 +203,7 @@ namespace prog
           blue = blueValues[vector_size / 2];
         }
 
-        color = {red, green, blue};
-
-        colors_[x][y] = color;
+        colors_[x][y] = {red, green, blue};
       }
     }
   }
