@@ -1,4 +1,5 @@
 #include "Color.hpp"
+#include <algorithm>
 
 namespace prog {
 
@@ -9,9 +10,9 @@ namespace prog {
 
     // Copy constructor
     Color::Color(const Color& other) {
-        red_ = other.red();
-        green_ = other.green();
-        blue_ = other.blue();
+        red_ = other.red_;
+        green_ = other.green_;
+        blue_ = other.blue_;
     }
 
     // Constructor with individual attributes

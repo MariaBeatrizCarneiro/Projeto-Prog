@@ -4,11 +4,9 @@
 #include "PNG.hpp"
 #include "XPM2.hpp"
 
-using namespace std;
-
 namespace prog {
     // Use to read color values from a script file.
-    istream& operator>>(istream& input, Color& c) {
+    std::istream& operator>>(std::istream& input, Color& c) {
         int r, g, b;
         input >> r >> g >> b;
         c.red() = r;
@@ -17,7 +15,7 @@ namespace prog {
         return input;
     }
 
-    Script::Script(const string& filename) :
+    Script::Script(const std::string& filename) :
         image(nullptr), input(filename) {
         
     }
@@ -32,9 +30,8 @@ namespace prog {
     }
 
     void Script::run() {
-        string command;
+        std::string command;
         while (input >> command) {
-            cout << "Executing command '" << command << "' ..." << endl;
             if (command == "open") {
                 open();
                 continue;
@@ -118,7 +115,7 @@ namespace prog {
     void Script::open() {
         // Replace current image (if any) with image read from PNG file.
         clear_image_if_any();
-        string filename;
+        std::string filename;
         input >> filename;
         image = loadFromPNG(filename);
     }
@@ -132,7 +129,7 @@ namespace prog {
     }
     void Script::save() {
         // Save current image to PNG file.
-        string filename;
+        std::string filename;
         input >> filename;
         saveToPNG(filename, image);
     }
@@ -173,7 +170,7 @@ namespace prog {
         Color neutral_color;
         Image *image_to_add;
         int x, y;
-        string filename;
+        std::string filename;
 
         // Read inputs
         input >> filename >> neutral_color >> x >> y;
@@ -250,14 +247,14 @@ namespace prog {
     void Script::xpm2_open() {
         // Replace current image (if any) with image read from XPM2 file.
         clear_image_if_any();
-        string filename;
+        std::string filename;
         input >> filename;
         image = loadFromXPM2(filename);
     }
 
     void Script::xpm2_save() {
         // Save current image to XPM2 file.
-        string filename;
+        std::string filename;
         input >> filename;
         saveToXPM2(filename, image);
     }
